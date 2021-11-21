@@ -1,0 +1,5 @@
+.CardBox {
+  min-height: "20vh";
+  max-height: "20vh";
+  overflow: "auto";
+}
