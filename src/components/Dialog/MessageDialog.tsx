@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 
+/** Dialog base */
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -49,6 +50,19 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
+/**
+ * Generic message box
+ *
+ * @export
+ * @param {{
+ *   title: string;
+ *   content: string;
+ *   buttonText: string;
+ *   open: boolean;
+ *   onClose: () => void;
+ * }} props
+ * @return {*}
+ */
 export default function MessageDialog(props: {
   title: string;
   content: string;
@@ -58,9 +72,10 @@ export default function MessageDialog(props: {
 }) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  /**
+   * handle close of the dialog
+   *
+   */
   const handleClose = () => {
     props.onClose();
     setOpen(false);
@@ -72,9 +87,6 @@ export default function MessageDialog(props: {
 
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
-      </Button> */}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
