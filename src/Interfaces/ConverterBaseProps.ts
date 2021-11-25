@@ -67,4 +67,9 @@ export interface ConverterBaseProps {
    * @memberof ConverterBaseProps
    */
   onSettingsUpdate?: (settings: Record<string, any>) => void;
+
+  /**
+   * help text
+   */
+  helpText?: string;
 }

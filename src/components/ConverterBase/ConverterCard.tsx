@@ -1,6 +1,7 @@
 import CloseIcon from "@mui/icons-material/CloseOutlined";
 import CopyIcon from "@mui/icons-material/CopyAllOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
+import InfoIcon from "@mui/icons-material/Info";
 import {
   Alert,
   Avatar,
@@ -20,6 +21,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Scrollbar from "react-scrollbars-custom";
 import "./ConverterCard.css";
+import MessageDialog from "../Dialog/MessageDialog";
 
 /**
  * Base component for converters
@@ -27,6 +29,7 @@ import "./ConverterCard.css";
  * @returns
  */
 export default function ConverterCard(props: ConverterBaseProps) {
+  const [openInfoDialog, showInfoDialog] = useState(false);
   //Incase the title is not supplied
   const title = props.title || "";
 
@@ -63,6 +66,14 @@ export default function ConverterCard(props: ConverterBaseProps) {
       message: "Copied !",
       variant: "success",
     });
+  };
+
+  /**
+   * handler for info button click
+   *
+   */
+  const onInfoClick = () => {
+    showInfoDialog(true);
   };
 
   /**
@@ -126,6 +137,9 @@ export default function ConverterCard(props: ConverterBaseProps) {
               title="Settings"
             >
               <SettingsIcon />
+            </IconButton>
+            <IconButton aria-label="info" onClick={onInfoClick} title="Info">
+              <InfoIcon />
             </IconButton>
             <IconButton aria-label="close" onClick={onClose} title="Close">
               <CloseIcon />
@@ -200,6 +214,15 @@ export default function ConverterCard(props: ConverterBaseProps) {
             )}
           </Scrollbar>
         </Box>
+        <MessageDialog
+          open={openInfoDialog}
+          title="About Converter"
+          content={props.helpText ? props.helpText : "No help"}
+          buttonText="Ok"
+          onClose={() => {
+            showInfoDialog(false);
+          }}
+        />
       </CardContent>
     </Card>
   );

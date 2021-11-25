@@ -257,6 +257,7 @@ function ConverterMain() {
                     <Comp
                       key={index}
                       text={text}
+                      helpText={componentMeta.description}
                       converterId={converter.converterId}
                       converterKey={converter.converterKey}
                       color={componentMeta.color}

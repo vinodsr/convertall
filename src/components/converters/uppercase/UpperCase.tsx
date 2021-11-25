@@ -12,6 +12,7 @@ export default function UpperCase(props: ConverterProps) {
       converterKey={props.converterKey}
       color={props.color}
       onClose={props.onClose}
+      helpText={props.helpText}
     />
   );
 }

@@ -10,6 +10,7 @@ export default function Base64Decoder(props: ConverterProps) {
       converterId={props.converterId}
       converterKey={props.converterKey}
       onClose={props.onClose}
+      helpText={props.helpText}
     />
   );
 }

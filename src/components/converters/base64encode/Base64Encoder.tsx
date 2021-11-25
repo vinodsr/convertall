@@ -88,6 +88,7 @@ export default function Base64Encoder(props: ConverterProps) {
       settings={setting}
       onSettingsUpdate={onSettingsUpdate}
       settingsComponent={Base64EncoderSettings}
+      helpText={props.helpText}
     />
   );
 }

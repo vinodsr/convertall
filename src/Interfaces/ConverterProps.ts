@@ -67,4 +67,9 @@ export interface ConverterProps {
    * @memberof ConverterProps
    */
   onSettingsUpdate?: (settings: string[]) => void;
+
+  /**
+   * help text
+   */
+  helpText: string;
 }
