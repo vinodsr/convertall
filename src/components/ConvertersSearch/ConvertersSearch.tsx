@@ -52,19 +52,23 @@ export const ConvertersSearch = React.forwardRef(
         justifyContent="right"
         direction="row"
         alignItems="flex-start"
+        sx={{
+          backgroundColor: (theme) => {
+            return theme.palette.background.default;
+          },
+        }}
         style={{
           position: "absolute",
           top: "10%",
           left: "10%",
+          padding: "20px",
           width: "80vw",
           height: "90vh",
-          backgroundColor: "white",
           border: "2px solid #000",
         }}
       >
         <Grid
           container
-          xs={12}
           justifyContent="center"
           direction="row"
           alignItems="flex-start"
@@ -93,8 +97,16 @@ export const ConvertersSearch = React.forwardRef(
               .join("")
               .toUpperCase();
             return (
-              <Grid item xs={3} direction="row">
-                <Card sx={{ maxWidth: 345 }}>
+              <Grid
+                item
+                xs={6}
+                md={4}
+                lg={3}
+                xl={2}
+                spacing={2}
+                direction="row"
+              >
+                <Card sx={{ maxWidth: 340 }}>
                   <CardHeader
                     avatar={
                       <Avatar

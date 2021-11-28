@@ -3,12 +3,12 @@ import { Alert, Button, Grid, Modal, Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { ConvertersSearch } from "@src/components/ConvertersSearch/ConvertersSearch";
 import TransformTextField from "@src/components/TransformTextField/TransformTextField";
-import { NotificationContext } from "@src/contexts/notification.context";
+import { NotificationContext } from "@src/contexts/Notification.Context2";
 import { FindConverter } from "@src/ConvertersMeta";
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
 import { DashboardComponent } from "@src/Interfaces/DashboardItem";
 import { ParseUrlHash } from "@src/utils/ParseUrlHash";
-import { SnackbarProvider, useSnackbar, VariantType } from "notistack";
+import { useSnackbar, VariantType } from "notistack";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -321,9 +321,5 @@ function ConverterMain() {
 }
 
 export default function ConverterMainWithSnack() {
-  return (
-    <SnackbarProvider maxSnack={3}>
-      <ConverterMain />
-    </SnackbarProvider>
-  );
+  return <ConverterMain />;
 }
