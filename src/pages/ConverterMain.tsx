@@ -3,7 +3,7 @@ import { Alert, Button, Grid, Modal, Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { ConvertersSearch } from "@src/components/ConvertersSearch/ConvertersSearch";
 import TransformTextField from "@src/components/TransformTextField/TransformTextField";
-import { NotificationContext } from "@src/contexts/Notification.Context2";
+import { NotificationContext } from "@src/contexts/Notification.Context";
 import { FindConverter } from "@src/ConvertersMeta";
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
 import { DashboardComponent } from "@src/Interfaces/DashboardItem";

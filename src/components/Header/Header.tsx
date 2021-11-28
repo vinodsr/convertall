@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Grid, Switch } from "@mui/material";
 import { CustomLink } from "@src/components/CustomLink/CustomLink";
-import { ThemeContext } from "@src/contexts/Theme.Context2";
+import { ThemeContext } from "@src/contexts/Theme.Context";
 
 /**
  * Header component

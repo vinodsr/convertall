@@ -1,4 +1,4 @@
-import { ThemeContext } from "../contexts/Theme.Context2";
+import { ThemeContext } from "../contexts/Theme.Context";
 import { useState } from "react";
 import { createAppTheme } from "@src/themes/DefaultTheme";
 import { ThemeProvider } from "@mui/material";
