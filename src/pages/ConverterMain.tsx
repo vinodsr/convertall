@@ -193,7 +193,7 @@ function ConverterMain() {
   }, [selectedConverters]);
 
   return (
-    <div style={{ marginTop: 10, minHeight: "87vh" }}>
+    <div style={{ marginTop: 10, minHeight: "80.3vh" }}>
       <NotificationContext.Provider
         value={{
           message: notification.message,
@@ -244,6 +244,7 @@ function ConverterMain() {
             item
             xs={12}
             alignContent="flex-start"
+            justifyContent="center"
             style={{
               minHeight: "68vh",
             }}
