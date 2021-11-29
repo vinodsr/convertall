@@ -1,6 +1,6 @@
 {
-  "name": "quick-encoder",
-  "version": "0.1.0",
+  "name": "convertall",
+  "version": "0.0.11",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",

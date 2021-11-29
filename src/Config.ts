@@ -2,5 +2,5 @@
  *  Global configuration
  */
 export const Config = {
-  Version: "1.0",
+  Version: "0.0.11",
 };
