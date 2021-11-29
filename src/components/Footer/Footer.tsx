@@ -1,5 +1,7 @@
-import { Grid } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import { Config } from "@src/Config";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import { Box } from "@mui/system";
 /**
  * Footer component
  *
@@ -29,14 +31,34 @@ export default function Footer() {
         paddingRight: "10px",
       }}
     >
-      <Grid xs={6} item>
-        vinodsr.com
+      <Grid xs={6} item container direction="column">
+        <Grid>
+          <Link
+            href="https://vinodsr.dev"
+            title="View vinodsr.dev"
+            target="_blank"
+            sx={{
+              color: (theme) =>
+                theme.palette.mode === "light"
+                  ? theme.palette.primary.contrastText
+                  : theme.palette.primary.light,
+            }}
+          >
+            vinodsr.dev
+          </Link>
+        </Grid>
+        <Grid>Version {Config.Version}</Grid>
       </Grid>
       <Grid xs={6} item style={{ textAlign: "right" }}>
-        Icons
-      </Grid>
-      <Grid xs={12} item>
-        Version {Config.Version}
+        <Box paddingTop="10px">
+          <Link
+            href="https://www.github.com/vinodsr/convertall"
+            title="View in github"
+            target="_blank"
+          >
+            <GitHubIcon color="action" />
+          </Link>
+        </Box>
       </Grid>
     </Grid>
   );
