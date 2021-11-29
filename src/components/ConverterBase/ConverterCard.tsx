@@ -119,9 +119,16 @@ export default function ConverterCard(props: ConverterBaseProps) {
       <CardHeader
         avatar={
           <Avatar
-            sx={{ bgcolor: color }}
+            sx={{
+              bgcolor: color,
+              color: "white",
+              borderColor: "white",
+              borderWidth: "2px",
+              borderStyle: "solid",
+            }}
             aria-label={props.title}
             title={props.title}
+            variant="rounded"
           >
             {avatarKey}
           </Avatar>
