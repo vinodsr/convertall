@@ -18,11 +18,11 @@ export default function Header() {
     return (
       <Toolbar>
         <Grid container>
-          <Grid xs={6} item>
+          <Grid xs={12} item>
             <SettingsIcon />
             &nbsp; Convert All.dev
           </Grid>
-          <Grid xs={6} style={{ textAlign: "right" }} item>
+          <Grid xs={12} style={{ textAlign: "right" }} item spacing={5}>
             <nav
               style={{
                 paddingBottom: "1rem",
@@ -48,6 +48,8 @@ export default function Header() {
   return (
     <React.Fragment>
       <AppBar position="fixed">{displayDesktop()}</AppBar>
+      {/* Dummy toolbar to adjust hieight */}
+      <Toolbar />
       <Toolbar />
     </React.Fragment>
   );
