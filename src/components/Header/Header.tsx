@@ -2,7 +2,6 @@ import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
 
 import React, { useContext } from "react";
-import SettingsIcon from "@mui/icons-material/Settings";
 import { Grid, Switch } from "@mui/material";
 import { CustomLink } from "@src/components/CustomLink/CustomLink";
 import { ThemeContext } from "@src/contexts/Theme.Context";
@@ -19,14 +18,23 @@ export default function Header() {
       <Toolbar>
         <Grid container>
           <Grid xs={12} item>
-            <SettingsIcon />
-            &nbsp; Convert All.dev
+            <img
+              src="images/ConvertAll_Logo-1.png"
+              height="70"
+              alt="ConvertAll.dev"
+              title="ConverAll.dev"
+              style={{
+                paddingTop: "10px",
+              }}
+            />
           </Grid>
           <Grid xs={12} style={{ textAlign: "right" }} item spacing={5}>
             <nav
-              style={{
-                paddingBottom: "1rem",
-              }}
+              style={
+                {
+                  // paddingBottom: "1rem",
+                }
+              }
             >
               Dark Mode{" "}
               <Switch
