@@ -298,6 +298,10 @@ function ConverterMain() {
                       marginTop: "20vh",
                     }}
                   >
+                    <div style={{ marginBottom: "10px" }}>
+                      ConvertAll helps you to convert one text input to other
+                      formats using a huge collection of converters.
+                    </div>
                     Choose some converters
                   </Alert>
                 </Stack>

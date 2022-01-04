@@ -3,6 +3,7 @@ import Base64Encoder from "@src/components/converters/base64encode/Base64Encoder
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
 import UpperCase from "@src/components/converters/uppercase/UpperCase";
 import { ConverterMeta } from "@src/Interfaces/ConverterMeta";
+import BcryptConverter from "@src/components/converters/bcrypt/BcryptConverter";
 
 /**
  * Create the Converter Meta structure
@@ -52,5 +53,13 @@ export const ConverterList: ConverterMeta[] = [
     "This is a upper case converter",
     [],
     UpperCase
+  ),
+  buildInfo(
+    "bc",
+    "Bcrypt Generator",
+    "#2E294E",
+    "This is a Bcrypt Generator",
+    [],
+    BcryptConverter
   ),
 ];
