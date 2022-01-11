@@ -4,11 +4,7 @@ import { Grid, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
 import bcrypt from "bcryptjs";
-import Promise from "bluebird";
 
-Promise.config({
-  cancellation: true,
-});
 function BcryptSettings(props: { errors: any; control: any }) {
   const { errors, control } = props;
   return (

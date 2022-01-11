@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AddCircleOutline } from "@mui/icons-material";
 import { ConverterMeta } from "@src/Interfaces/ConverterMeta";
-
+import CloseIcon from "@mui/icons-material/Close";
 /**
  * List item component
  */
@@ -25,7 +25,7 @@ const Item = styled(Box)(({ theme }) => ({
  * Conveter Search
  */
 export const ConvertersSearch = React.forwardRef(
-  (props: { onSelect: Function }, ref) => {
+  (props: { onSelect: Function; closeDialog: Function }, ref) => {
     const [searchText, setSearchText] = useState("");
     const [foundConverters, setFoundComponents] = useState(
       [] as ConverterMeta[]
@@ -67,6 +67,19 @@ export const ConvertersSearch = React.forwardRef(
           border: "2px solid #000",
         }}
       >
+        <Grid item xs={12}>
+          <Item>
+            Add Converters
+            <IconButton
+              aria-label="close"
+              onClick={() => {
+                props.closeDialog();
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Item>
+        </Grid>
         <Grid
           container
           justifyContent="center"
@@ -85,74 +98,83 @@ export const ConvertersSearch = React.forwardRef(
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setSearchText(event.currentTarget.value);
                 }}
-                sx={{ width: 1 / 2 }}
+                sx={{ width: 3 / 4 }}
               />
             </Item>
           </Grid>
-          {foundConverters.map((converter) => {
-            const avatarKey = converter.name
-              .split(" ")
-              .slice(0, 2)
-              .map((e) => e.charAt(0))
-              .join("")
-              .toUpperCase();
-            return (
-              <Grid
-                item
-                xs={6}
-                md={4}
-                lg={3}
-                xl={2}
-                spacing={2}
-                direction="row"
-              >
-                <Card sx={{ maxWidth: 340 }}>
-                  <CardHeader
-                    avatar={
-                      <Avatar
-                        sx={{ bgcolor: converter.color }}
-                        aria-label="recipe"
-                      >
-                        {avatarKey}
-                      </Avatar>
-                    }
-                    action={
+          <Grid
+            item
+            container
+            style={{
+              height: "60vh",
+              overflow: "auto",
+            }}
+          >
+            {foundConverters.map((converter) => {
+              const avatarKey = converter.name
+                .split(" ")
+                .slice(0, 2)
+                .map((e) => e.charAt(0))
+                .join("")
+                .toUpperCase();
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  lg={3}
+                  xl={2}
+                  spacing={2}
+                  direction="row"
+                >
+                  <Card sx={{ maxWidth: 340 }}>
+                    <CardHeader
+                      avatar={
+                        <Avatar
+                          sx={{ bgcolor: converter.color }}
+                          aria-label="recipe"
+                        >
+                          {avatarKey}
+                        </Avatar>
+                      }
+                      action={
+                        <IconButton
+                          aria-label="add to dashboard"
+                          title="add to dashboard"
+                          onClick={() => {
+                            props.onSelect(converter.converterKey);
+                          }}
+                        >
+                          <AddCircleOutline />
+                        </IconButton>
+                      }
+                      title={converter.name}
+                      subheader=""
+                    />
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image="/logo512.png"
+                      alt="Logo"
+                    />
+                    <CardContent>
+                      <Typography variant="body2" color="text.secondary">
+                        {converter.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
                       <IconButton
-                        aria-label="add to dashboard"
-                        title="add to dashboard"
-                        onClick={() => {
-                          props.onSelect(converter.converterKey);
-                        }}
+                        aria-label="add to favorites"
+                        title="add to favorites"
                       >
-                        <AddCircleOutline />
+                        <FavoriteIcon />
                       </IconButton>
-                    }
-                    title={converter.name}
-                    subheader=""
-                  />
-                  <CardMedia
-                    component="img"
-                    height="194"
-                    image="/logo512.png"
-                    alt="Logo"
-                  />
-                  <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                      {converter.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton
-                      aria-label="add to favorites"
-                      title="add to favorites"
-                    >
-                      <FavoriteIcon />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </Grid>
-            );
-          })}
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
           {Object.keys(foundConverters).length === 0 && (
             <Grid item xs={12}>
               No components found !

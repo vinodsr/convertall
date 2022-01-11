@@ -319,7 +319,12 @@ function ConverterMain() {
         onClose={handleCloseConveterSearch}
         aria-labelledby="Converters search window"
       >
-        <ConvertersSearch onSelect={onComponentSelectAfterSearch} />
+        <ConvertersSearch
+          onSelect={onComponentSelectAfterSearch}
+          closeDialog={() => {
+            setShowComponentAddDiag(false);
+          }}
+        />
       </Modal>
     </div>
   );
