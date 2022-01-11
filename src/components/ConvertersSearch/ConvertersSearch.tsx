@@ -105,6 +105,7 @@ export const ConvertersSearch = React.forwardRef(
           <Grid
             item
             container
+            spacing={2}
             style={{
               height: "60vh",
               overflow: "auto",
