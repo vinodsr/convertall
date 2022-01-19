@@ -1,4 +1,4 @@
-import { Avatar, Grid, TextField } from "@mui/material";
+import { Alert, Avatar, Grid, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { ConverterMap } from "@src/ConvertersMeta";
 import { Box, styled } from "@mui/system";
@@ -61,17 +61,61 @@ export const ConvertersSearch = React.forwardRef(
           position: "absolute",
           top: "10%",
           left: "10%",
-          padding: "20px",
+          padding: "0px",
           width: "80vw",
-          height: "90vh",
+          height: "87vh",
           border: "2px solid #000",
+          margin: "0px",
         }}
       >
-        <Grid item xs={12}>
-          <Item>
+        <Grid
+          item
+          xs={12}
+          style={{
+            padding: "10px",
+            margin: "0px",
+          }}
+          sx={{
+            backgroundImage: (theme) => {
+              if (theme.palette.mode === "dark") {
+                return "linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))";
+              } //theme.palette.background.default;
+              else {
+                return "";
+              }
+            },
+            backgroundColor: (theme) => {
+              return theme.palette.mode === "light"
+                ? theme.palette.primary.main
+                : "";
+            },
+            color: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.primary.contrastText
+                : theme.palette.primary.light,
+          }}
+        >
+          <Item
+            id="modal-title"
+            style={{
+              padding: "0px",
+              margin: "0px",
+              textAlign: "left",
+            }}
+          >
             Add Converters
             <IconButton
               aria-label="close"
+              style={{
+                float: "right",
+                padding: "0px",
+              }}
+              sx={{
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.contrastText
+                    : theme.palette.primary.light,
+              }}
               onClick={() => {
                 props.closeDialog();
               }}
@@ -86,6 +130,11 @@ export const ConvertersSearch = React.forwardRef(
           direction="row"
           alignItems="flex-start"
           spacing={5}
+          style={{
+            padding: "20px",
+            paddingTop: "0px",
+            margin: "0xpx",
+          }}
         >
           <Grid item xs={12}>
             <Item>
@@ -99,6 +148,10 @@ export const ConvertersSearch = React.forwardRef(
                   setSearchText(event.currentTarget.value);
                 }}
                 sx={{ width: 3 / 4 }}
+                style={{
+                  paddingTop: "0px",
+                  margin: "0xpx",
+                }}
               />
             </Item>
           </Grid>
@@ -175,12 +228,14 @@ export const ConvertersSearch = React.forwardRef(
                 </Grid>
               );
             })}
+            {Object.keys(foundConverters).length === 0 && (
+              <Grid item container spacing={2} xs={12}>
+                <Grid item xs={12} spacing={20}>
+                  <Alert severity="error"> No Converters found ! </Alert>
+                </Grid>
+              </Grid>
+            )}
           </Grid>
-          {Object.keys(foundConverters).length === 0 && (
-            <Grid item xs={12}>
-              No components found !
-            </Grid>
-          )}
         </Grid>
       </Grid>
     );

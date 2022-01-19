@@ -317,7 +317,7 @@ function ConverterMain() {
       <Modal
         open={showComponentAddDiag}
         onClose={handleCloseConveterSearch}
-        aria-labelledby="Converters search window"
+        aria-labelledby="modal-title"
       >
         <ConvertersSearch
           onSelect={onComponentSelectAfterSearch}
