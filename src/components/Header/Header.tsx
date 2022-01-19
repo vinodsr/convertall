@@ -28,7 +28,7 @@ export default function Header() {
               }}
             />
           </Grid>
-          <Grid xs={12} style={{ textAlign: "right" }} item spacing={5}>
+          <Grid xs={12} style={{ textAlign: "right" }} item>
             <nav
               style={
                 {
@@ -38,7 +38,7 @@ export default function Header() {
             >
               Dark Mode{" "}
               <Switch
-                defaultChecked={theme.darkTheme}
+                checked={theme.darkTheme}
                 onChange={(event) => {
                   theme.setDarkTheme(event.target.checked);
                 }}
