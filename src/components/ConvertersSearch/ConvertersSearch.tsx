@@ -174,18 +174,24 @@ export const ConvertersSearch = React.forwardRef(
               return (
                 <Grid
                   item
+                  container
                   xs={12}
                   md={4}
                   lg={3}
                   xl={2}
                   spacing={2}
                   direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  style={{
+                    paddingBottom: "20px",
+                  }}
                 >
                   <Card sx={{ maxWidth: 340 }}>
                     <CardHeader
                       avatar={
                         <Avatar
-                          sx={{ bgcolor: converter.color }}
+                          sx={{ bgcolor: converter.ascentColor }}
                           aria-label="recipe"
                         >
                           {avatarKey}

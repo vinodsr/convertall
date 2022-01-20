@@ -261,7 +261,7 @@ function ConverterMain() {
                       helpText={componentMeta.description}
                       converterId={converter.converterId}
                       converterKey={converter.converterKey}
-                      color={componentMeta.color}
+                      color={componentMeta.ascentColor}
                       onClose={(componentId: string) => {
                         console.info("Removing Converter ", componentId);
                         removeConverter(componentId);
