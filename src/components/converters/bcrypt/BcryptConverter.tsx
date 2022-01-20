@@ -1,5 +1,5 @@
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
-import ConverterCard from "@src/components/ConverterBase/ConverterCard";
+import ConverterCard from "@src/Components/ConverterBase/ConverterCard";
 import { Grid, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { useEffect, useState } from "react";

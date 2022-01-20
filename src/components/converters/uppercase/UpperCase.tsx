@@ -1,5 +1,5 @@
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
-import ConverterCard from "@src/components/ConverterBase/ConverterCard";
+import ConverterCard from "@src/Components/ConverterBase/ConverterCard";
 
 export default function UpperCase(props: ConverterProps) {
   const uppercase = props.text.toUpperCase();

@@ -1,6 +1,6 @@
-import { ThemeContext } from "../contexts/Theme.Context";
+import { ThemeContext } from "../Contexts/Theme.Context";
 import { useEffect, useState } from "react";
-import { createAppTheme } from "@src/themes/DefaultTheme";
+import { createAppTheme } from "@src/Themes/DefaultTheme";
 import { ThemeProvider } from "@mui/material";
 
 export function AppThemeProvider(props: { children: any }) {

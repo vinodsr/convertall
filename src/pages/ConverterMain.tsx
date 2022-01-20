@@ -1,13 +1,13 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Alert, Button, Grid, Modal, Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
-import { ConvertersSearch } from "@src/components/ConvertersSearch/ConvertersSearch";
-import TransformTextField from "@src/components/TransformTextField/TransformTextField";
-import { NotificationContext } from "@src/contexts/Notification.Context";
+import { ConvertersSearch } from "@src/Components/ConvertersSearch/ConvertersSearch";
+import TransformTextField from "@src/Components/TransformTextField/TransformTextField";
+import { NotificationContext } from "@src/Contexts/Notification.Context";
 import { FindConverter } from "@src/ConvertersMeta";
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
 import { DashboardComponent } from "@src/Interfaces/DashboardItem";
-import { ParseUrlHash } from "@src/utils/ParseUrlHash";
+import { ParseUrlHash } from "@src/Utils/ParseUrlHash";
 import { useSnackbar, VariantType } from "notistack";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";

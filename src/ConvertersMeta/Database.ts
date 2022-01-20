@@ -1,9 +1,9 @@
-import Base64Decoder from "@src/components/converters/base64decode/Base64Decoder";
-import Base64Encoder from "@src/components/converters/base64encode/Base64Encoder";
+import Base64Decoder from "@src/Components/Converters/base64decode/Base64Decoder";
+import Base64Encoder from "@src/Components/Converters/base64encode/Base64Encoder";
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
-import UpperCase from "@src/components/converters/uppercase/UpperCase";
+import UpperCase from "@src/Components/Converters/uppercase/UpperCase";
 import { ConverterMeta } from "@src/Interfaces/ConverterMeta";
-import BcryptConverter from "@src/components/converters/bcrypt/BcryptConverter";
+import BcryptConverter from "@src/Components/Converters/bcrypt/BcryptConverter";
 
 /**
  * Create the Converter Meta structure

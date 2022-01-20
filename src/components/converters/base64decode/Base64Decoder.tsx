@@ -1,4 +1,4 @@
-import ConverterCard from "@src/components/ConverterBase/ConverterCard";
+import ConverterCard from "@src/Components/ConverterBase/ConverterCard";
 import { ConverterProps } from "@src/Interfaces/ConverterProps";
 export default function Base64Decoder(props: ConverterProps) {
   const text = Buffer.from(props.text, "base64").toString();

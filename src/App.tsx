@@ -1,11 +1,11 @@
 import "./App.css";
-import Header from "@src/components/Header/Header";
-import ConverterMainWithSnack from "@src/pages/ConverterMain";
-import Footer from "@src/components/Footer/Footer";
+import Header from "@src/Components/Header/Header";
+import ConverterMainWithSnack from "@src/Pages/ConverterMain";
+import Footer from "@src/Components/Footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { SnackbarProvider } from "notistack";
-import { AppThemeProvider } from "@src/providers/AppTheme.Providers";
+import { AppThemeProvider } from "@src/Providers/AppTheme.Providers";
 //console.log = () => {};
 
 /**

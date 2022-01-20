@@ -3,8 +3,8 @@ import AppBar from "@mui/material/AppBar";
 
 import React, { useContext } from "react";
 import { Grid, Switch } from "@mui/material";
-import { CustomLink } from "@src/components/CustomLink/CustomLink";
-import { ThemeContext } from "@src/contexts/Theme.Context";
+import { CustomLink } from "@src/Components/CustomLink/CustomLink";
+import { ThemeContext } from "@src/Contexts/Theme.Context";
 
 /**
  * Header component
