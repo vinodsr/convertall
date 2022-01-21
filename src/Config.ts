@@ -1,6 +1,8 @@
 /**
  *  Global configuration
  */
+import Package from "../package.json";
+
 export const Config = {
-  Version: "0.0.11",
+  Version: Package.version,
 };
