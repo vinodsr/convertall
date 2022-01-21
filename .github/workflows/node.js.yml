@@ -31,8 +31,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: "ap-south-1"
-      - run: npm version patch
-      - run: git push
       - run: npm ci
       - run: npm run build
       - name: Deploy to S3 - Dev
