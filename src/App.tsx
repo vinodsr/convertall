@@ -6,6 +6,12 @@ import { Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 import { AppThemeProvider } from "@src/Providers/AppTheme.Providers";
+import { AboutPage } from "./Pages/About";
+
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 //console.log = () => {};
 
 /**
@@ -26,14 +32,7 @@ export default function App() {
           <div>
             <Routes>
               <Route path="/" element={<ConverterMainWithSnack />} />
-              <Route
-                path="/about"
-                element={
-                  <div style={{ marginTop: 10, minHeight: "85vh" }}>
-                    <h1>About ?</h1>
-                  </div>
-                }
-              />
+              <Route path="/about" element={<AboutPage />} />
             </Routes>
           </div>
           <Footer></Footer>
