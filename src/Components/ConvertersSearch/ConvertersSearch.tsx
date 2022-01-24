@@ -179,6 +179,7 @@ export const ConvertersSearch = React.forwardRef(
                   md={4}
                   lg={3}
                   xl={2}
+                  key={converter.converterKey}
                   spacing={2}
                   direction="row"
                   justifyContent="center"
@@ -244,7 +245,7 @@ export const ConvertersSearch = React.forwardRef(
             })}
             {Object.keys(foundConverters).length === 0 && (
               <Grid item container spacing={2} xs={12}>
-                <Grid item xs={12} spacing={20}>
+                <Grid item xs={12}>
                   <Alert severity="error"> No Converters found ! </Alert>
                 </Grid>
               </Grid>
