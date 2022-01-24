@@ -191,8 +191,16 @@ export const ConvertersSearch = React.forwardRef(
                     <CardHeader
                       avatar={
                         <Avatar
-                          sx={{ bgcolor: converter.ascentColor }}
-                          aria-label="recipe"
+                          sx={{
+                            bgcolor: converter.ascentColor,
+                            color: "white",
+                            borderColor: "white",
+                            borderWidth: "2px",
+                            borderStyle: "solid",
+                          }}
+                          aria-label={converter.name}
+                          title={converter.name}
+                          variant="rounded"
                         >
                           {avatarKey}
                         </Avatar>
