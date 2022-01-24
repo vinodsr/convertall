@@ -3,6 +3,13 @@ import { useEffect, useState } from "react";
 import { createAppTheme } from "@src/Themes/DefaultTheme";
 import { ThemeProvider } from "@mui/material";
 
+/**
+ * App Theme provider
+ *
+ * @export
+ * @param {{ children: any }} props
+ * @return {*}
+ */
 export function AppThemeProvider(props: { children: any }) {
   const [darkMode, setDarkMode] = useState(() => {
     // Getting dark mode from localstorage
