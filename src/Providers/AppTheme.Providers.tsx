@@ -4,7 +4,7 @@ import { createAppTheme } from "@src/Themes/DefaultTheme";
 import { ThemeProvider } from "@mui/material";
 
 /**
- * App Theme provider
+ * App Theme provider for main app
  *
  * @export
  * @param {{ children: any }} props
