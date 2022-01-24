@@ -12,7 +12,11 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-//console.log = () => {};
+
+// supress logs for any env other than dev
+if (process.env.NODE_ENV !== "development") {
+  console.log = () => {};
+}
 
 /**
  * Main App
