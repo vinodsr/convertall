@@ -29,11 +29,7 @@ if (process.env.NODE_ENV !== "development") {
  */
 export default function App() {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-      }}
-    >
+    <div>
       <AppThemeProvider>
         <SnackbarProvider maxSnack={3}>
           <CssBaseline />

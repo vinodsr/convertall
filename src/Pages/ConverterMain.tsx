@@ -193,7 +193,12 @@ function ConverterMain() {
   }, [selectedConverters]);
 
   return (
-    <div style={{ marginTop: 10, minHeight: "80.3vh" }}>
+    <div
+      style={{
+        marginTop: "12vh",
+        minHeight: "82.8vh",
+      }}
+    >
       <NotificationContext.Provider
         value={{
           message: notification.message,
@@ -202,7 +207,15 @@ function ConverterMain() {
         }}
       >
         <Grid container spacing={1}>
-          <Grid item xs={12} alignItems="center" justifyItems="center">
+          <Grid
+            item
+            xs={12}
+            alignItems="center"
+            justifyItems="center"
+            style={{
+              paddingTop: "5vh",
+            }}
+          >
             <TransformTextItem>
               <TransformTextField
                 text={text}
@@ -246,7 +259,7 @@ function ConverterMain() {
             alignContent="flex-start"
             justifyContent="center"
             style={{
-              minHeight: "68vh",
+              minHeight: "61vh",
             }}
           >
             {Object.values(selectedConverters).map((converter, index) => {

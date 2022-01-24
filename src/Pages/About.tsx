@@ -4,6 +4,7 @@ import LogoDevIcon from "@mui/icons-material/LogoDev";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import MergeOutlinedIcon from "@mui/icons-material/MergeOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 /**
  * About Page Component
@@ -12,7 +13,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 export const AboutPage = () => {
   return (
     <Grid
-      style={{ marginTop: 10, minHeight: "80vh", padding: "3em" }}
+      style={{ marginTop: "12vh", minHeight: "82vh", padding: "3em" }}
       container
       spacing={3}
     >
@@ -65,7 +66,7 @@ export const AboutPage = () => {
                   converters.
                   <br />
                   <br />
-                  You can read more about the contribution guidelines at
+                  You can read more about the contribution guidelines at{" "}
                   <Link
                     href="https://www.github.com/vinodsr/convertall"
                     title="github account"
@@ -95,7 +96,7 @@ export const AboutPage = () => {
             </Typography>
             <Box paddingTop={2}>
               <Link
-                href="https://www.github.com/vinodsr/convertall"
+                href="https://www.github.com/vinodsr"
                 title="github account"
                 target="_blank"
               >
@@ -107,6 +108,13 @@ export const AboutPage = () => {
                 target="_blank"
               >
                 <LogoDevIcon color="action" fontSize="large" />
+              </Link>
+              <Link
+                href="https://vinodsr.dev"
+                title="home page"
+                target="_blank"
+              >
+                <AccountBoxOutlinedIcon color="action" fontSize="large" />
               </Link>
             </Box>
           </Box>

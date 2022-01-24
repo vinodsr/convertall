@@ -15,7 +15,11 @@ export default function Header() {
 
   const displayDesktop = () => {
     return (
-      <Toolbar>
+      <Toolbar
+        style={{
+          height: "12vh",
+        }}
+      >
         <Grid container>
           <Grid xs={12} item>
             <img
@@ -56,9 +60,6 @@ export default function Header() {
   return (
     <React.Fragment>
       <AppBar position="fixed">{displayDesktop()}</AppBar>
-      {/* Dummy toolbar to adjust hieight */}
-      <Toolbar />
-      <Toolbar />
     </React.Fragment>
   );
 }

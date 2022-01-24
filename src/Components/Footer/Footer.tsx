@@ -15,8 +15,7 @@ export default function Footer() {
         backgroundImage: (theme) => {
           if (theme.palette.mode === "dark") {
             return "linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))";
-          } //theme.palette.background.default;
-          else {
+          } else {
             return "";
           }
         },
@@ -35,7 +34,7 @@ export default function Footer() {
         <Grid>
           <Link
             href="https://vinodsr.dev"
-            title="View vinodsr.dev"
+            title="Visit vinodsr.dev"
             target="_blank"
             sx={{
               color: (theme) =>
