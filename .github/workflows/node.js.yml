@@ -20,26 +20,38 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: "ap-south-1"
-      - name: Setup Vals
+
+      - name: Setup Git
         run: |
           git config --global user.email "${{ secrets.GIT_EMAIL }}"
           git config --global user.name "Vinod S R"
-      - run: npm version patch
-      - run: git push "https://${{secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-      - run: npm ci
-      - run: npm run build
+
+      - name: Increment patch version
+        run: npm version patch
+
+      - name: Push version changes
+        run: git push "https://${{secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+
+      - name: Install deps
+        run: npm ci
+      - name: Build App
+        run: npm run build
+
       - name: Deploy to S3 - Dev
         run: aws s3 sync ./build s3://convertall-dev
+
       - name: Dev - Cloudfront Invalidation
         run: aws cloudfront create-invalidation --distribution-id  E2XIFKJU7Z6T0E  --paths "/*"
