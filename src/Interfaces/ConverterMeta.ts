@@ -7,4 +7,5 @@ export interface ConverterMeta {
   description: string;
   tags: string[];
   component: React.FC<ConverterProps>;
+  category: string;
 }

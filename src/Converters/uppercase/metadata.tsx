@@ -6,6 +6,7 @@ export const UpperCaseMeta: ConverterMeta = {
   name: "Uppercase Converter",
   ascentColor: "black",
   description: "This is a upper case converter",
+  category: "Utils",
   tags: [],
   component: UpperCase,
 };

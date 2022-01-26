@@ -6,6 +6,7 @@ export const Base64DecoderMeta: ConverterMeta = {
   name: "Base64 decoder",
   ascentColor: "red",
   description: "This is a decoder",
+  category: "Encoder_Decoder",
   tags: [],
   component: Base64Decoder,
 };

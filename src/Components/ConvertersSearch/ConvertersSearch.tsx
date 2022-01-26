@@ -1,4 +1,4 @@
-import { Alert, Avatar, Grid, TextField } from "@mui/material";
+import { Alert, Avatar, Chip, Grid, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { ConverterMap } from "@src/ConvertersMeta";
 import { Box, styled } from "@mui/system";
@@ -13,6 +13,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AddCircleOutline } from "@mui/icons-material";
 import { ConverterMeta } from "@src/Interfaces/ConverterMeta";
 import CloseIcon from "@mui/icons-material/Close";
+import { Categories } from "@src/data/CategoryMaster";
 /**
  * List item component
  */
@@ -27,9 +28,22 @@ const Item = styled(Box)(({ theme }) => ({
 export const ConvertersSearch = React.forwardRef(
   (props: { onSelect: Function; closeDialog: Function }, ref) => {
     const [searchText, setSearchText] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("ALL");
+
     const [foundConverters, setFoundComponents] = useState(
       [] as ConverterMeta[]
     );
+
+    /**
+     * Triggers on clicking the category chip
+     *
+     * @param {string} selectedCategory
+     */
+    const handleCategoryClick = (selectedCategory: string) => {
+      console.log("Selected " + selectedCategory);
+      setSelectedCategory(selectedCategory);
+    };
+
     useEffect(() => {
       setFoundComponents(Object.values(ConverterMap));
       if (searchText.trim().length > 0) {
@@ -150,10 +164,29 @@ export const ConvertersSearch = React.forwardRef(
                 sx={{ width: 3 / 4 }}
                 style={{
                   paddingTop: "0px",
-                  margin: "0xpx",
+                  margin: "0px",
                 }}
               />
             </Item>
+          </Grid>
+          {/* Render the categories */}
+          <Grid container item xs={12} spacing={1} justifyContent="center">
+            <Grid item>
+              <Chip
+                label="All"
+                variant="outlined"
+                onClick={() => handleCategoryClick("ALL")}
+              />
+            </Grid>
+            {Categories.map((category) => (
+              <Grid item>
+                <Chip
+                  label={category.label}
+                  variant="outlined"
+                  onClick={() => handleCategoryClick(category.category)}
+                />
+              </Grid>
+            ))}
           </Grid>
           <Grid
             item
@@ -165,6 +198,13 @@ export const ConvertersSearch = React.forwardRef(
             }}
           >
             {foundConverters.map((converter) => {
+              // for ALL category no need to run the filter
+              if (selectedCategory !== "ALL") {
+                // do the filter
+                if (converter.category !== selectedCategory) {
+                  return null;
+                }
+              }
               const avatarKey = converter.name
                 .split(" ")
                 .slice(0, 2)
