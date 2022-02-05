@@ -182,8 +182,16 @@ export const ConvertersSearch = React.forwardRef(
             </CardContent>
             <CardActions disableSpacing>
               <IconButton
-                aria-label="add to favorites"
-                title="add to favorites"
+                aria-label={
+                  isFavourite(converter.converterKey)
+                    ? "remove from favourites"
+                    : "add to favourites"
+                }
+                title={
+                  isFavourite(converter.converterKey)
+                    ? "remove from favourites"
+                    : "add to favourites"
+                }
                 onClick={() => {
                   toggleFavourite(converter);
                 }}
