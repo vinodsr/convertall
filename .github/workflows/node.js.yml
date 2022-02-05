@@ -47,6 +47,10 @@ jobs:
 
       - name: Install deps
         run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
       - name: Build App
         run: npm run build
 

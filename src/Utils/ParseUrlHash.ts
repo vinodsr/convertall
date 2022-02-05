@@ -17,7 +17,6 @@ export class ParseUrlHash {
     if ($hash.length > 0) {
       // the first character is # ignore it
       const hash = $hash.substr(1);
-      console.log("Working on hash", hash);
       const componentDatas = hash.split(";");
       for (const componentData of componentDatas) {
         const componentSplit = componentData?.split(":");

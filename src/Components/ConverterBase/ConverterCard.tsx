@@ -80,7 +80,6 @@ export default function ConverterCard(props: ConverterBaseProps) {
    * On Close handler
    */
   const onClose = () => {
-    console.log("Closing ", props.converterId);
     props.onClose(props.converterId);
   };
 
@@ -89,7 +88,6 @@ export default function ConverterCard(props: ConverterBaseProps) {
    * @param data form data
    */
   const onSubmit = (data: any) => {
-    console.log("form data", data, isSubmitted);
     if (props.onSettingsUpdate) {
       props.onSettingsUpdate(data);
     }
@@ -100,7 +98,6 @@ export default function ConverterCard(props: ConverterBaseProps) {
    *  Loads the settings view
    */
   const showSettings = () => {
-    console.log("showing settings with prop", props.settings);
     // set the
     for (const settingKey in props.settings) {
       // Set the value in the form
