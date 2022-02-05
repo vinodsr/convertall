@@ -54,7 +54,7 @@ export default function ConverterCard(props: ConverterBaseProps) {
     control,
     handleSubmit,
     setValue,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm();
 
   /**

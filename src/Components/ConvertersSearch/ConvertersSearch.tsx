@@ -14,6 +14,7 @@ import { AddCircleOutline } from "@mui/icons-material";
 import { ConverterMeta } from "@src/Interfaces/ConverterMeta";
 import CloseIcon from "@mui/icons-material/Close";
 import { Categories } from "@src/data/CategoryMaster";
+import { Category } from "@src/Interfaces/Category";
 /**
  * List item component
  */
@@ -28,7 +29,13 @@ const Item = styled(Box)(({ theme }) => ({
 export const ConvertersSearch = React.forwardRef(
   (props: { onSelect: Function; closeDialog: Function }, ref) => {
     const [searchText, setSearchText] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("ALL");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [favs, setFavs] = useState("");
+    const [searchMode, setSearchMode] = useState("NORMAL");
+
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+      null
+    );
 
     const [foundConverters, setFoundComponents] = useState(
       [] as ConverterMeta[]
@@ -39,9 +46,161 @@ export const ConvertersSearch = React.forwardRef(
      *
      * @param {string} selectedCategory
      */
-    const handleCategoryClick = (selectedCategory: string) => {
+    const handleCategoryClick = (
+      selectedCategory: Category | null | String
+    ) => {
       console.log("Selected " + selectedCategory);
-      setSelectedCategory(selectedCategory);
+      if (selectedCategory === "FAV") {
+        setSearchMode("FAV");
+      } else {
+        setSearchMode("NORMAL");
+        setSelectedCategory(selectedCategory as Category);
+      }
+    };
+
+    /**
+     * Toggle favs of a converter
+     *
+     * @param {ConverterMeta} converter
+     */
+    const toggleFavourite = (converter: ConverterMeta) => {
+      if (converter) {
+        // add to local storage
+        const favsStored = localStorage.getItem("favs");
+        let favsObj = null;
+        if (favsStored !== null) {
+          try {
+            favsObj = JSON.parse(favsStored);
+          } catch (e) {}
+        }
+        const favs: Record<string, ConverterMeta> = favsObj || {};
+        // Check if the favs is there then remove it.
+        if (typeof favs[converter.converterKey] !== "undefined") {
+          delete favs[converter.converterKey];
+        } else {
+          favs[converter.converterKey] = converter;
+        }
+        const favStr = JSON.stringify(favs);
+        localStorage.setItem("favs", favStr);
+        setFavs(favStr);
+      }
+    };
+
+    /**
+     * Check if a covnerter is marked as favourite
+     *
+     * @param {string} converterKey
+     * @return {*}
+     */
+    const isFavourite = (converterKey: string) => {
+      const favsStored = localStorage.getItem("favs");
+      let favsObj = null;
+      if (favsStored !== null) {
+        try {
+          favsObj = JSON.parse(favsStored);
+        } catch (e) {}
+      }
+      if (favsObj !== null) {
+        return typeof favsObj[converterKey] !== "undefined" ? true : false;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     * Render a card for converter
+     *
+     * @param {ConverterMeta} converter
+     * @return {*}
+     */
+    const renderConverterCard = (converter: ConverterMeta) => {
+      const avatarKey = converter.name
+        .split(" ")
+        .slice(0, 2)
+        .map((e) => e.charAt(0))
+        .join("")
+        .toUpperCase();
+      return (
+        <Grid
+          item
+          container
+          xs={12}
+          md={4}
+          lg={3}
+          xl={2}
+          key={converter.converterKey}
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          style={{
+            paddingBottom: "20px",
+          }}
+        >
+          <Card sx={{ maxWidth: 340 }}>
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{
+                    bgcolor: converter.ascentColor,
+                    color: "white",
+                    borderColor: "white",
+                    borderWidth: "2px",
+                    borderStyle: "solid",
+                  }}
+                  aria-label={converter.name}
+                  title={converter.name}
+                  variant="rounded"
+                >
+                  {avatarKey}
+                </Avatar>
+              }
+              action={
+                <IconButton
+                  aria-label="add to dashboard"
+                  title="add to dashboard"
+                  onClick={() => {
+                    props.onSelect(converter.converterKey);
+                  }}
+                >
+                  <AddCircleOutline />
+                </IconButton>
+              }
+              title={converter.name}
+              subheader=""
+            />
+            <CardMedia
+              component="img"
+              height="194"
+              image="/logo512.png"
+              alt="Logo"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {converter.description}
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+              <IconButton
+                aria-label="add to favorites"
+                title="add to favorites"
+                onClick={() => {
+                  toggleFavourite(converter);
+                }}
+              >
+                <FavoriteIcon
+                  sx={{
+                    color: (theme) =>
+                      isFavourite(converter.converterKey)
+                        ? theme.palette.secondary.main
+                        : "auto",
+                  }}
+                />
+              </IconButton>
+            </CardActions>
+          </Card>
+        </Grid>
+      );
     };
 
     useEffect(() => {
@@ -174,20 +333,49 @@ export const ConvertersSearch = React.forwardRef(
             <Grid item>
               <Chip
                 label="All"
-                variant="outlined"
-                onClick={() => handleCategoryClick("ALL")}
+                color={
+                  searchMode === "NORMAL" && selectedCategory === null
+                    ? "primary"
+                    : "default"
+                }
+                variant={
+                  searchMode === "NORMAL" && selectedCategory === null
+                    ? "filled"
+                    : "outlined"
+                }
+                onClick={() => handleCategoryClick(null)}
+              />
+            </Grid>
+            <Grid item>
+              <Chip
+                label="Favourites"
+                color={searchMode === "FAV" ? "primary" : "default"}
+                variant={searchMode === "FAV" ? "filled" : "outlined"}
+                onClick={() => handleCategoryClick("FAV")}
               />
             </Grid>
             {Categories.map((category) => (
               <Grid item>
                 <Chip
                   label={category.label}
-                  variant="outlined"
-                  onClick={() => handleCategoryClick(category.category)}
+                  color={
+                    searchMode === "NORMAL" &&
+                    selectedCategory?.category === category.category
+                      ? "primary"
+                      : "default"
+                  }
+                  variant={
+                    searchMode === "NORMAL" &&
+                    selectedCategory?.category === category.category
+                      ? "filled"
+                      : "outlined"
+                  }
+                  onClick={() => handleCategoryClick(category)}
                 />
               </Grid>
             ))}
           </Grid>
+
           <Grid
             item
             container
@@ -197,92 +385,43 @@ export const ConvertersSearch = React.forwardRef(
               overflow: "auto",
             }}
           >
+            {/* <Grid
+              item
+              xs={12}
+              style={{
+                margin: 0,
+              }}
+            >
+              <Item>
+                <Typography variant="h5">
+                  Showing{" "}
+                  {searchMode === "FAV"
+                    ? "Favourite"
+                    : selectedCategory
+                    ? selectedCategory?.label
+                    : "All"}{" "}
+                  converters
+                </Typography>
+              </Item>
+            </Grid> */}
+
             {foundConverters.map((converter) => {
               // for ALL category no need to run the filter
-              if (selectedCategory !== "ALL") {
+
+              if (
+                searchMode === "FAV" &&
+                !isFavourite(converter.converterKey)
+              ) {
+                return null;
+              } else if (searchMode === "NORMAL" && selectedCategory !== null) {
                 // do the filter
-                if (converter.category !== selectedCategory) {
+                if (converter.category !== selectedCategory.category) {
                   return null;
                 }
               }
-              const avatarKey = converter.name
-                .split(" ")
-                .slice(0, 2)
-                .map((e) => e.charAt(0))
-                .join("")
-                .toUpperCase();
-              return (
-                <Grid
-                  item
-                  container
-                  xs={12}
-                  md={4}
-                  lg={3}
-                  xl={2}
-                  key={converter.converterKey}
-                  spacing={2}
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="center"
-                  style={{
-                    paddingBottom: "20px",
-                  }}
-                >
-                  <Card sx={{ maxWidth: 340 }}>
-                    <CardHeader
-                      avatar={
-                        <Avatar
-                          sx={{
-                            bgcolor: converter.ascentColor,
-                            color: "white",
-                            borderColor: "white",
-                            borderWidth: "2px",
-                            borderStyle: "solid",
-                          }}
-                          aria-label={converter.name}
-                          title={converter.name}
-                          variant="rounded"
-                        >
-                          {avatarKey}
-                        </Avatar>
-                      }
-                      action={
-                        <IconButton
-                          aria-label="add to dashboard"
-                          title="add to dashboard"
-                          onClick={() => {
-                            props.onSelect(converter.converterKey);
-                          }}
-                        >
-                          <AddCircleOutline />
-                        </IconButton>
-                      }
-                      title={converter.name}
-                      subheader=""
-                    />
-                    <CardMedia
-                      component="img"
-                      height="194"
-                      image="/logo512.png"
-                      alt="Logo"
-                    />
-                    <CardContent>
-                      <Typography variant="body2" color="text.secondary">
-                        {converter.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                      <IconButton
-                        aria-label="add to favorites"
-                        title="add to favorites"
-                      >
-                        <FavoriteIcon />
-                      </IconButton>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              );
+              return renderConverterCard(converter);
             })}
+
             {Object.keys(foundConverters).length === 0 && (
               <Grid item container spacing={2} xs={12}>
                 <Grid item xs={12}>
