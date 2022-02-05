@@ -1,17 +1,29 @@
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
 
-import React, { useContext } from "react";
-import { Grid, Switch } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, IconButton, Modal } from "@mui/material";
 import { CustomLink } from "@src/Components/CustomLink/CustomLink";
-import { ThemeContext } from "@src/Contexts/Theme.Context";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { SettingsDialog } from "../Settings/SettingsDialog";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
 
 /**
  * Header component
  *
  */
 export default function Header() {
-  const theme = useContext(ThemeContext);
+  // const [tabIndex, setTabIndex] = React.useState(0);
+
+  // State to control settings dialog
+  const [showSettingsDialog, setShowSettingsDialog] = useState(false);
+  const handleOpenSettingsDialog = () => setShowSettingsDialog(true);
+  const handleCloseSettingsDialog = () => setShowSettingsDialog(false);
+
+  // const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  //   setTabIndex(newValue);
+  // };
 
   const displayDesktop = () => {
     return (
@@ -32,7 +44,32 @@ export default function Header() {
               }}
             />
           </Grid>
+
           <Grid xs={12} style={{ textAlign: "right" }} item>
+            {/* <Grid item justify-content="flex-end">
+              <Tabs
+                sx={{
+                  textAlign: "right",
+                  alignItems: "flex-end",
+                  color: "green",
+                }}
+                value={tabIndex}
+                onChange={handleTabChange}
+                aria-label="icon label tabs example"
+              >
+                <Tab
+                  icon={<HomeIcon />}
+                  sx={{
+                    color: "green",
+                    "&.Mui-selected": {
+                      color: "#fff",
+                    },
+                  }}
+                  label="Home"
+                />
+                <Tab icon={<InfoIcon />} label="About" />
+              </Tabs>
+            </Grid> */}
             <nav
               style={
                 {
@@ -40,16 +77,28 @@ export default function Header() {
                 }
               }
             >
-              Dark Mode{" "}
-              <Switch
-                checked={theme.darkTheme}
-                onChange={(event) => {
-                  theme.setDarkTheme(event.target.checked);
+              <IconButton
+                title="Settings"
+                aria-label="Settings"
+                sx={{
+                  color: (theme) =>
+                    theme.palette.mode === "light"
+                      ? theme.palette.primary.contrastText
+                      : theme.palette.primary.light,
                 }}
-              />
-              <CustomLink to="/">Home</CustomLink>
-              &nbsp;&nbsp;&nbsp;
-              <CustomLink to="/about">About</CustomLink>
+                onClick={() => {
+                  handleOpenSettingsDialog();
+                }}
+              >
+                <SettingsIcon />
+              </IconButton>
+
+              <CustomLink to="/" title="Go to home">
+                <HomeIcon />
+              </CustomLink>
+              <CustomLink to="/about" title="About ?">
+                <InfoIcon />
+              </CustomLink>
             </nav>
           </Grid>
         </Grid>
@@ -60,6 +109,17 @@ export default function Header() {
   return (
     <React.Fragment>
       <AppBar position="fixed">{displayDesktop()}</AppBar>
+      <Modal
+        open={showSettingsDialog}
+        onClose={handleCloseSettingsDialog}
+        aria-labelledby="modal-title"
+      >
+        <SettingsDialog
+          closeDialog={() => {
+            setShowSettingsDialog(false);
+          }}
+        />
+      </Modal>
     </React.Fragment>
   );
 }

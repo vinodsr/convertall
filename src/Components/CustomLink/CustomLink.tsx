@@ -1,3 +1,4 @@
+import { IconButton } from "@mui/material";
 import { Link, LinkProps, useMatch, useResolvedPath } from "react-router-dom";
 
 /**
@@ -17,9 +18,19 @@ export function CustomLink({ children, to, ...props }: LinkProps) {
       to={to}
       {...props}
     >
-      {match && "[ "}
-      {children}
-      {match && " ]"}
+      <IconButton
+        aria-label="Settings"
+        sx={{
+          borderRadius: 0,
+          borderBottom: match ? "3px solid" : null,
+          color: (theme) =>
+            theme.palette.mode === "light"
+              ? theme.palette.primary.contrastText
+              : theme.palette.primary.light,
+        }}
+      >
+        {children}
+      </IconButton>
     </Link>
   );
 }
