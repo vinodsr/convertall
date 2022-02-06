@@ -11,6 +11,7 @@ import { ParseUrlHash } from "@src/Utils/ParseUrlHash";
 import { useSnackbar, VariantType } from "notistack";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import ShareIcon from "@mui/icons-material/Share";
 
 declare global {
   namespace JSX {
@@ -150,6 +151,7 @@ function ConverterMain() {
     if (notification.message && notification.message.length > 0) {
       enqueueSnackbar(notification.message, {
         variant: notification.variant,
+        autoHideDuration: 3000,
         anchorOrigin: {
           vertical: "top",
           horizontal: "right",
@@ -196,7 +198,7 @@ function ConverterMain() {
     <div
       style={{
         marginTop: "12vh",
-        minHeight: "82.8vh",
+        minHeight: "82.9vh",
       }}
     >
       <NotificationContext.Provider
@@ -208,31 +210,92 @@ function ConverterMain() {
       >
         <Grid container spacing={1}>
           <Grid
+            container
             item
             xs={12}
             alignItems="center"
-            justifyItems="center"
             style={{
-              paddingTop: "5vh",
+              paddingTop: "50px",
             }}
           >
-            <TransformTextItem>
-              <TransformTextField
-                text={text}
-                onChange={(text: string) => setText(text)}
-              />
+            <Grid item xs={1} md={2} justifyContent="flex-end"></Grid>
+            <Grid item xs={12} md={6} justifyContent="flex-end">
+              <TransformTextItem>
+                <TransformTextField
+                  text={text}
+                  onChange={(text: string) => setText(text)}
+                />
+              </TransformTextItem>
+            </Grid>
+
+            {/**/}
+            <Grid
+              container
+              item
+              xs={12}
+              md={4}
+              sx={{
+                justifyContent: {
+                  xs: "space-evenly",
+                  md: "start",
+                },
+              }}
+            >
+              {/* <Fab
+                variant="extended"
+                color="primary"
+                size="small"
+                onClick={handleOpenConveterSearch}
+              >
+                <AddIcon />
+                Add Converters
+              </Fab> */}
               <Button
                 variant="outlined"
                 startIcon={<AddIcon />}
                 onClick={handleOpenConveterSearch}
                 style={{
                   margin: "10px",
+                  borderRadius: "15px",
                 }}
               >
                 Add Converters
               </Button>
+              <Button
+                variant="outlined"
+                startIcon={<ShareIcon />}
+                onClick={async () => {
+                  await navigator.clipboard.writeText(window.location.href);
+                  setNotification({
+                    message: "Link Copied to clipboard",
+                    variant: "info",
+                  });
+                }}
+                style={{
+                  margin: "10px",
+                  borderRadius: "15px",
+                }}
+              >
+                Share
+              </Button>
 
-              {/* <Button
+              {/* <Fab
+                variant="extended"
+                size="small"
+                onClick={async () => {
+                  await navigator.clipboard.writeText(window.location.href);
+                  setNotification({
+                    message: "Link Copied to clipboard",
+                    variant: "info",
+                  });
+                }}
+              >
+                <ShareIcon />
+                Share
+              </Fab> */}
+            </Grid>
+
+            {/* <Button
                 variant="contained"
                 onClick={() => {
                   console.log("Clicked", selectedComponents);
@@ -250,7 +313,6 @@ function ConverterMain() {
               >
                 Add 2
               </Button> */}
-            </TransformTextItem>
           </Grid>
           <Grid
             container

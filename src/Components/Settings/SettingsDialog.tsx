@@ -74,7 +74,7 @@ export const SettingsDialog = React.forwardRef(
           padding: "0px",
           width: "50vw",
           height: "80vh",
-          border: "2px solid #000",
+          // border: "2px solid #000",
           margin: "0px",
         }}
       >

@@ -217,13 +217,19 @@ export const ConvertersSearch = React.forwardRef(
         const foundList = [];
         const searchTextLC = searchText.toLowerCase();
         for (const value of Object.values(ConverterMap)) {
+          // Check for the category
+          if (searchMode === "NORMAL" && selectedCategory !== null) {
+            if (selectedCategory.category !== value.category) {
+              continue;
+            }
+          }
           if (value.name.toLowerCase().includes(searchTextLC)) {
             foundList.push(value);
           }
         }
         setFoundComponents(foundList);
       }
-    }, [searchText]);
+    }, [searchText, selectedCategory, searchMode]);
 
     return (
       <Grid
@@ -245,7 +251,7 @@ export const ConvertersSearch = React.forwardRef(
           padding: "0px",
           width: "80vw",
           height: "87vh",
-          border: "2px solid #000",
+          // border: "2px solid #000",
           margin: "0px",
         }}
       >

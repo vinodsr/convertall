@@ -18,6 +18,7 @@ export default function Header() {
 
   // State to control settings dialog
   const [showSettingsDialog, setShowSettingsDialog] = useState(false);
+  const [localHash, setLocalHash] = useState(window.location.hash);
   const handleOpenSettingsDialog = () => setShowSettingsDialog(true);
   const handleCloseSettingsDialog = () => setShowSettingsDialog(false);
 
@@ -93,10 +94,19 @@ export default function Header() {
                 <SettingsIcon />
               </IconButton>
 
-              <CustomLink to="/" title="Go to home">
+              <CustomLink to={"/" + localHash} title="Go to home">
                 <HomeIcon />
               </CustomLink>
-              <CustomLink to="/about" title="About ?">
+              <CustomLink
+                to="/about"
+                title="About ?"
+                onClick={() => {
+                  // only store hash if the  current page is root
+                  if (window.location.pathname === "/") {
+                    setLocalHash(window.location.hash);
+                  }
+                }}
+              >
                 <InfoIcon />
               </CustomLink>
             </nav>

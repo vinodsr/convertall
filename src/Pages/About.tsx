@@ -5,7 +5,7 @@ import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import MergeOutlinedIcon from "@mui/icons-material/MergeOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-
+import ConstructionOutlinedIcon from "@mui/icons-material/ConstructionOutlined";
 /**
  * About Page Component
  * @returns
@@ -82,43 +82,64 @@ export const AboutPage = () => {
       </Grid>
 
       <Grid item lg={4} md={5} sm={6} xs={12}>
-        <Paper elevation={6}>
-          <Box padding={3}>
-            <Typography variant="h3" component="div" gutterBottom>
-              <InfoOutlinedIcon
-                color="success"
-                sx={{ fontSize: ".9em" }}
-              ></InfoOutlinedIcon>
-              About Me
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-              Vinod S R / Vinod
-            </Typography>
-            <Box paddingTop={2}>
-              <Link
-                href="https://www.github.com/vinodsr"
-                title="github account"
-                target="_blank"
-              >
-                <GitHubIcon color="action" fontSize="large" />
-              </Link>
-              <Link
-                href="https://dev.to/vinodsr"
-                title="dev.to account"
-                target="_blank"
-              >
-                <LogoDevIcon color="action" fontSize="large" />
-              </Link>
-              <Link
-                href="https://vinodsr.dev"
-                title="home page"
-                target="_blank"
-              >
-                <AccountBoxOutlinedIcon color="action" fontSize="large" />
-              </Link>
-            </Box>
-          </Box>
-        </Paper>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Paper elevation={6}>
+              <Box padding={3}>
+                <Typography variant="h3" component="div" gutterBottom>
+                  <InfoOutlinedIcon
+                    color="success"
+                    sx={{ fontSize: ".9em" }}
+                  ></InfoOutlinedIcon>
+                  About Me
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  Vinod S R / Vinod
+                </Typography>
+                <Box paddingTop={2}>
+                  <Link
+                    href="https://www.github.com/vinodsr"
+                    title="github account"
+                    target="_blank"
+                  >
+                    <GitHubIcon color="action" fontSize="large" />
+                  </Link>
+                  <Link
+                    href="https://dev.to/vinodsr"
+                    title="dev.to account"
+                    target="_blank"
+                  >
+                    <LogoDevIcon color="action" fontSize="large" />
+                  </Link>
+                  <Link
+                    href="https://vinodsr.dev"
+                    title="home page"
+                    target="_blank"
+                  >
+                    <AccountBoxOutlinedIcon color="action" fontSize="large" />
+                  </Link>
+                </Box>
+              </Box>
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Paper elevation={6}>
+              <Box padding={3}>
+                <Typography variant="h3" component="div" gutterBottom>
+                  <ConstructionOutlinedIcon
+                    color="warning"
+                    sx={{ fontSize: ".9em" }}
+                  ></ConstructionOutlinedIcon>
+                  Ecosystem
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  ReactJS / Github / AWS
+                </Typography>
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

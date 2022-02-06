@@ -32,6 +32,7 @@ export default function Footer() {
     >
       <Grid xs={6} item container direction="column">
         <Grid>
+          about://
           <Link
             href="https://vinodsr.dev"
             title="Visit vinodsr.dev"
@@ -46,7 +47,7 @@ export default function Footer() {
             vinodsr.dev
           </Link>
         </Grid>
-        <Grid>Version {Config.Version}</Grid>
+        <Grid>version:{Config.Version}</Grid>
       </Grid>
       <Grid xs={6} item style={{ textAlign: "right" }}>
         <Box paddingTop="10px">

@@ -35,7 +35,7 @@ export default function TransformTextField(props: TransformTextFieldProps) {
       id="text"
       label="Text to transform"
       variant="outlined"
-      sx={{ width: 3 / 4 }}
+      sx={{ width: 9 / 10 }}
       autoFocus
       multiline={true}
       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
