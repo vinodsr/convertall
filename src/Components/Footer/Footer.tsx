@@ -21,7 +21,7 @@ export default function Footer() {
         },
         backgroundColor: (theme) =>
           theme.palette.mode === "light" ? theme.palette.primary.main : "",
-        height: "6vh",
+        height: "7vh",
         color: (theme) =>
           theme.palette.mode === "light"
             ? theme.palette.primary.contrastText

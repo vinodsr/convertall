@@ -13,7 +13,7 @@ import ConstructionOutlinedIcon from "@mui/icons-material/ConstructionOutlined";
 export const AboutPage = () => {
   return (
     <Grid
-      style={{ marginTop: "12vh", minHeight: "82vh", padding: "3em" }}
+      style={{ marginTop: "12vh", minHeight: "81vh", padding: "3em" }}
       container
       spacing={3}
     >

@@ -9,7 +9,7 @@ import { ConverterProps } from "@src/Interfaces/ConverterProps";
 import { DashboardComponent } from "@src/Interfaces/DashboardItem";
 import { ParseUrlHash } from "@src/Utils/ParseUrlHash";
 import { useSnackbar, VariantType } from "notistack";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ShareIcon from "@mui/icons-material/Share";
 
@@ -195,12 +195,7 @@ function ConverterMain() {
   }, [selectedConverters]);
 
   return (
-    <div
-      style={{
-        marginTop: "12vh",
-        minHeight: "82.9vh",
-      }}
-    >
+    <React.Fragment>
       <NotificationContext.Provider
         value={{
           message: notification.message,
@@ -208,7 +203,10 @@ function ConverterMain() {
           setNotification,
         }}
       >
-        <Grid container spacing={1}>
+        <Grid container spacing={1}  style={{
+        marginTop: "12vh",
+        minHeight: "81vh",
+      }}>
           <Grid
             container
             item
@@ -401,7 +399,7 @@ function ConverterMain() {
           }}
         />
       </Modal>
-    </div>
+      </React.Fragment>
   );
 }
 
