@@ -369,7 +369,7 @@ export const ConvertersSearch = React.forwardRef(
               />
             </Grid>
             {Categories.map((category) => (
-              <Grid item>
+               <Grid item>
                 <Chip
                   label={category.label}
                   color={

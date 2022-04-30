@@ -1,7 +1,7 @@
-import CloseIcon from "@mui/icons-material/CloseOutlined";
-import CopyIcon from "@mui/icons-material/CopyAllOutlined";
-import SettingsIcon from "@mui/icons-material/Settings";
-import InfoIcon from "@mui/icons-material/Info";
+import CloseIcon from '@mui/icons-material/CloseOutlined';
+import CopyIcon from '@mui/icons-material/CopyAllOutlined';
+import SettingsIcon from '@mui/icons-material/Settings';
+import InfoIcon from '@mui/icons-material/Info';
 import {
   Alert,
   Avatar,
@@ -12,16 +12,16 @@ import {
   Grid,
   IconButton,
   Typography,
-} from "@mui/material";
-import { red } from "@mui/material/colors";
-import { Box } from "@mui/system";
-import { NotificationContext } from "@src/Contexts/Notification.Context";
-import { ConverterBaseProps } from "@src/Interfaces/ConverterBaseProps";
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import Scrollbar from "react-scrollbars-custom";
-import "./ConverterCard.css";
-import MessageDialog from "../Dialog/MessageDialog";
+} from '@mui/material';
+import { red } from '@mui/material/colors';
+import { Box } from '@mui/system';
+import { NotificationContext } from '@src/Contexts/Notification.Context';
+import { ConverterBaseProps } from '@src/Interfaces/ConverterBaseProps';
+import { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Scrollbar from 'react-scrollbars-custom';
+import './ConverterCard.css';
+import MessageDialog from '../Dialog/MessageDialog';
 
 /**
  * Base component for converters
@@ -31,14 +31,14 @@ import MessageDialog from "../Dialog/MessageDialog";
 export default function ConverterCard(props: ConverterBaseProps) {
   const [openInfoDialog, showInfoDialog] = useState(false);
   //Incase the title is not supplied
-  const title = props.title || "";
+  const title = props.title || '';
 
   //Avatar icon
   const avatarKey = title
-    .split(" ")
+    .split(' ')
     .slice(0, 2)
     .map((e) => e.charAt(0))
-    .join("")
+    .join('')
     .toUpperCase();
   // Color for icon
   const color = props.color || red[500];
@@ -61,11 +61,17 @@ export default function ConverterCard(props: ConverterBaseProps) {
    * On Click handler for copy button
    */
   const onCopyClick = async () => {
-    await navigator.clipboard.writeText(props.text);
-    setNotification({
-      message: "Copied !",
-      variant: "success",
-    });
+    if (props.text) {
+      await navigator.clipboard.writeText(props.text);
+      setNotification({
+        message: 'Copied !',
+        variant: 'success',
+      });
+    } else {
+      if (props.onCopy) {
+        props.onCopy();
+      }
+    }
   };
 
   /**
@@ -109,7 +115,7 @@ export default function ConverterCard(props: ConverterBaseProps) {
   // reference for settings, incase of null use dummy page
   const SettingsComponent = props.settingsComponent
     ? props.settingsComponent
-    : () => <Alert severity="info">No Settings for this converter</Alert>;
+    : () => <Alert severity='info'>No Settings for this converter</Alert>;
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -118,67 +124,68 @@ export default function ConverterCard(props: ConverterBaseProps) {
           <Avatar
             sx={{
               bgcolor: color,
-              color: "white",
-              borderColor: "white",
-              borderWidth: "2px",
-              borderStyle: "solid",
+              color: 'white',
+              borderColor: 'white',
+              borderWidth: '2px',
+              borderStyle: 'solid',
             }}
             aria-label={props.title}
             title={props.title}
-            variant="rounded"
+            variant='rounded'
           >
             {avatarKey}
           </Avatar>
         }
         action={
           <>
-            <IconButton aria-label="copy" onClick={onCopyClick} title="Copy">
+            <IconButton aria-label='copy' onClick={onCopyClick} title='Copy'>
               <CopyIcon />
             </IconButton>
             <IconButton
-              aria-label="Settings"
+              aria-label='Settings'
               onClick={showSettings}
-              title="Settings"
+              title='Settings'
             >
               <SettingsIcon />
             </IconButton>
-            <IconButton aria-label="info" onClick={onInfoClick} title="Info">
+            <IconButton aria-label='info' onClick={onInfoClick} title='Info'>
               <InfoIcon />
             </IconButton>
-            <IconButton aria-label="close" onClick={onClose} title="Close">
+            <IconButton aria-label='close' onClick={onClose} title='Close'>
               <CloseIcon />
             </IconButton>
           </>
         }
         title={props.title}
+        subheader={props.description}
       />
 
       <CardContent
         style={{
-          display: settingsView ? "block" : "none",
+          display: settingsView ? 'block' : 'none',
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box className="CardBox">
+          <Box className='CardBox'>
             <Grid container>
-              <Grid item xs={12} textAlign="left">
-                <Typography variant="h6" display="block" gutterBottom>
+              <Grid item xs={12} textAlign='left'>
+                <Typography variant='h6' display='block' gutterBottom>
                   Settings
                 </Typography>
               </Grid>
               <Grid
                 item
                 xs={12}
-                textAlign="left"
+                textAlign='left'
                 style={{
-                  marginBottom: "10px",
+                  marginBottom: '10px',
                 }}
               >
-                <Scrollbar style={{ width: "100%", height: "13vh" }}>
+                <Scrollbar style={{ width: '100%', height: '13vh' }}>
                   {/* dummy component for fixing height */}
                   <div
                     style={{
-                      marginTop: "10px",
+                      marginTop: '10px',
                     }}
                   >
                     <SettingsComponent
@@ -189,8 +196,8 @@ export default function ConverterCard(props: ConverterBaseProps) {
                 </Scrollbar>
               </Grid>
               <Grid item>
-                <Button variant="contained" size="small" type="submit">
-                  {props.settingsComponent ? "Save" : "Ok"}
+                <Button variant='contained' size='small' type='submit'>
+                  {props.settingsComponent ? 'Save' : 'Ok'}
                 </Button>
               </Grid>
             </Grid>
@@ -200,29 +207,31 @@ export default function ConverterCard(props: ConverterBaseProps) {
 
       <CardContent
         style={{
-          display: settingsView ? "none" : "block",
+          display: settingsView ? 'none' : 'block',
         }}
       >
-        <Box className="CardBox">
-          <Scrollbar style={{ width: "100%", height: "20vh" }}>
-            {props.text ? (
+        <Box className='CardBox'>
+          <Scrollbar style={{ width: '100%', height: '20vh' }}>
+            {props.content ? (
+              props.content
+            ) : props.text ? (
               <Typography
-                variant="h5"
-                component="div"
-                style={{ wordBreak: "break-all" }}
+                variant='h5'
+                component='div'
+                style={{ wordBreak: 'break-all' }}
               >
                 {props.text}
               </Typography>
             ) : (
-              "Start typing something"
+              'Start typing something'
             )}
           </Scrollbar>
         </Box>
         <MessageDialog
           open={openInfoDialog}
-          title="About Converter"
-          content={props.helpText ? props.helpText : "No help"}
-          buttonText="Ok"
+          title='About Converter'
+          content={props.helpText ? props.helpText : 'No help'}
+          buttonText='Ok'
           onClose={() => {
             showInfoDialog(false);
           }}

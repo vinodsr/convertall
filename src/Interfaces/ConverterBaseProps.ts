@@ -24,7 +24,17 @@ export interface ConverterBaseProps {
    * @type {string}
    * @memberof ConverterBaseProps
    */
-  text: string;
+  text?: string;
+
+  /**
+   * Content JSX to show instead of text
+   */
+  content?: JSX.Element;
+
+  /**
+   *  Copy handler
+   */
+  onCopy?: () => void;
 
   /**
    * On Close handler
@@ -47,6 +57,14 @@ export interface ConverterBaseProps {
    * @memberof ConverterBaseProps
    */
   title?: string;
+
+  /**
+   * Description of the card
+   *
+   * @type {string}
+   * @memberof ConverterBaseProps
+   */
+  description?: string;
   /**
    * Component to load for settings
    *

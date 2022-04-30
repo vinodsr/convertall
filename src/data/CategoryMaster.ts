@@ -14,6 +14,11 @@ export const Categories: Category[] = [
     description: "Converters for encrypting data",
   },
   {
+    category: "Unit_Converter",
+    label: "Unit Converters",
+    description: "Unit Converters",
+  },
+  {
     category: "Utils",
     label: "Utility",
     description: "Miscellaneous converters",

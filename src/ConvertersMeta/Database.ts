@@ -1,3 +1,4 @@
+import { LengthConverterMeta } from "../Converters/lengthconverter/metadata";
 import { ConverterMeta } from "@src/Interfaces/ConverterMeta";
 import { Base64DecoderMeta } from "@src/Converters/base64decode/metadata";
 import { Base64EncoderMeta } from "@src/Converters/base64encode/metadata";
@@ -15,5 +16,6 @@ const buildMetadata = () => {
   ConverterList.push(Base64EncoderMeta);
   ConverterList.push(BcryptConverterMeta);
   ConverterList.push(UpperCaseMeta);
+  ConverterList.push(LengthConverterMeta);
 };
 buildMetadata();
