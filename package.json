@@ -1,6 +1,6 @@
 {
   "name": "convertall",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",
