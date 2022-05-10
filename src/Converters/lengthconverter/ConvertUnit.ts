@@ -11,7 +11,11 @@ import { Units } from './Units';
 export function ConvertUnit(
   value: number,
   sourceUnit: string,
-  targetUnit: string
+  targetUnit: string,
+  round: number
 ): number {
-  return (value * Units[sourceUnit].factor) / Units[targetUnit].factor;
+  return +(
+    (value * Units[sourceUnit].factor) /
+    Units[targetUnit].factor
+  ).toFixed(round);
 }

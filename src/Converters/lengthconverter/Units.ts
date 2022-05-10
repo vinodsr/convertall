@@ -13,7 +13,7 @@ export const Units: Record<string, Unit> = {
   cm: {
     name: 'Centimetre',
     code: 'cm',
-    factor: 10,
+    factor: 10, // how much of the 1 unit in mm
   },
   m: {
     name: 'Metre',
@@ -35,30 +35,30 @@ export const Units: Record<string, Unit> = {
     code: 'nanom',
     factor: 0.000001,
   },
-  // TODO: Find better approaches for other unit transformation
-  /*mile: {
+  foot: {
+    name: 'Foot',
+    code: 'foot',
+    factor: 304.8,
+  },
+  mile: {
     name: 'Mile',
     code: 'mile',
-    factor: 0.0000006213711922,
+    factor: 1609000,
   },
   yard: {
     name: 'Yard',
     code: 'yard',
-    factor: 0.00109361,
+    factor: 914.4,
   },
-  foot: {
-    name: 'Foot',
-    code: 'foot',
-    factor: 0.00328084,
-  },
+
   inch: {
     name: 'Inch',
     code: 'inch',
-    factor: 0.03937008,
+    factor: 25.4,
   },
   nmile: {
     name: 'Nautical Mile',
     code: 'nmile',
-    factor: 0.00000053996,
-  },*/
+    factor: 1852000,
+  },
 };
